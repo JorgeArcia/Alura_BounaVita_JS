@@ -13,17 +13,15 @@ for (let i = 0; i < pacientes.length; i++) {
 
     let Px = document.querySelector(".paciente") // le asigno el valor dentro del elemento.
 
-    let pesoValido = true
-    let alturaValida = true
+    let pesoValido = validarPeso(peso)
+    let alturaValida = validarAltura(altura)
 
-    if ((peso < 0) || (peso > 1000)) {
-        pesoValido = false
+    if (!pesoValido) {
         tdImc.textContent = "Peso Invalido"
         paciente.classList.add("paciente-incorrecto")
     }
 
-    if ((altura < 0) || (altura > 4)) {
-        alturaValida = false
+    if (!alturaValida) {
         tdImc.textContent = "Altura Invalida"
         paciente.classList.add("paciente-incorrecto")
     }
@@ -36,4 +34,20 @@ for (let i = 0; i < pacientes.length; i++) {
 function calcularImc(peso, altura) {
     let imc = peso / (altura * altura)
     return imc.toFixed(2);
+}
+
+function validarPeso(peso) {
+    if (peso >= 0 && peso < 1000) {
+        return true
+    } else {
+        return false
+    }
+}
+
+function validarAltura(altura) {
+    if (altura >= 0 && altura < 3) {
+        return true
+    } else {
+        return false
+    }
 }
