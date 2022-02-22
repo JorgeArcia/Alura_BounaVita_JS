@@ -15,6 +15,9 @@ function adicionar() {
     tabla = document.querySelector("#tabla-pacientes")
     tabla.appendChild(pxTr)
     formulario.reset()
+
+    var mensajeErrores = document.querySelector("#mensajes-errores")
+    mensajeErrores.innerHTML = ""
 }
 
 function capturarDatosPx(form) {
@@ -57,12 +60,25 @@ function validarPx(px) {
     if (!validarAltura(px.altura)) {
         errores.push("La altura es incorrecta")
     }
+    if (px.nombre.length == 0) {
+        errores.push("El nombre no puede estar vacio")
+    }
+    if (px.peso.length == 0) {
+        errores.push("El peso no puede estar vacio")
+    }
+    if (px.altura.length == 0) {
+        errores.push("La altura no puede estar vacio")
+    }
+    if (px.gordura.length == 0) {
+        errores.push("El % de gordura no puede estar vacio")
+    }
+
     return errores
 }
 
 function showErrors(errores) {
     var ul = document.querySelector("#mensajes-errores")
-
+    ul.innerHTML = "" //me saca los errores cada vez que pase.
     errores.forEach(error => {
         var li = document.createElement("li")
         li.textContent = error
