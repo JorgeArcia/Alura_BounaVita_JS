@@ -11,9 +11,7 @@ function adicionar() {
         return
     }
 
-    var pxTr = construirTr(px)
-    tabla = document.querySelector("#tabla-pacientes")
-    tabla.appendChild(pxTr)
+    addPacientesToTabla(px)
     formulario.reset()
 
     var mensajeErrores = document.querySelector("#mensajes-errores")
@@ -29,6 +27,12 @@ function capturarDatosPx(form) {
         imc: calcularImc(form.peso.value, form.altura.value)
     }
     return px
+}
+
+function addPacientesToTabla(paciente) {
+    var pxTr = construirTr(paciente)
+    tabla = document.querySelector("#tabla-pacientes")
+    tabla.appendChild(pxTr)
 }
 
 function construirTr(px) {
